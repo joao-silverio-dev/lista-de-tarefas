@@ -3,20 +3,26 @@ const botaoTarefas = document.querySelector('.botao-tarefas');
 const tarefas = document.querySelector('.tarefas');
 
 botaoTarefas.addEventListener('click', function(){
-    adicionarTarefa();
+    adicionarTarefa(inputTarefas.value);
 });
-function adicionarTarefa(){
-    if(!inputTarefas.value) return;
-        const tarefa = document.createElement('p');
-        tarefa.innerText = `${inputTarefas.value} `;
-        tarefas.appendChild(tarefa);
-        inputTarefas.value = '';
-        inputTarefas.focus();
-        const botaoApagar = document.createElement('button');
-        botaoApagar.innerText = `Apagar`;
-        botaoApagar.className = `apagador`;
-        tarefa.appendChild(botaoApagar);
-        salvarTarefas();
+function adicionarTarefa(texto){
+    console.log(texto);
+    if(!texto) return;
+    const tarefa = document.createElement('p');
+    tarefa.innerText = texto || `${inputTarefas.value}`;
+    tarefas.appendChild(tarefa);
+    adicionarBotao(tarefa);
+    
+}
+
+function adicionarBotao(tarefa) {
+// A tarefa de adicionar tarefa e adicionar conteúdo/elemento podem ser divididas
+
+    const botaoApagar = document.createElement('button');
+    botaoApagar.innerText = `Apagar`;
+    botaoApagar.className = `apagador`;
+    tarefa.appendChild(botaoApagar);
+    salvarTarefas();
 }
 document.addEventListener('click', function(e){
     if(e.target.className === `apagador`){
@@ -30,7 +36,7 @@ document.addEventListener('click', function(e){
 
 inputTarefas.addEventListener('keypress', (event) => {
     if(event.key === 'Enter'){
-        adicionarTarefa();
+        adicionarTarefa(inputTarefas.value);
     }
 });
 
@@ -46,6 +52,8 @@ function salvarTarefas(){
 
     const tarefasJSON = JSON.stringify(listaDeTarefas);
     localStorage.setItem('tarefas', tarefasJSON);
+    inputTarefas.value = '';
+    inputTarefas.focus();
 }
 
 function getTarefasSalvas(){
@@ -53,17 +61,7 @@ function getTarefasSalvas(){
     const listaDeTarefas = JSON.parse(tarefasSalvasJson);
 
     for(let tarefaSalva of listaDeTarefas){
-        console.log(tarefaSalva)
-        const tarefa = document.createElement('p');
-        tarefa.innerText = `${tarefaSalva}`;
-        tarefas.appendChild(tarefa);
-        inputTarefas.value = '';
-        inputTarefas.focus();
-        const botaoApagar = document.createElement('button');
-        botaoApagar.innerText = `Apagar`;
-        botaoApagar.className = `apagador`;
-        tarefa.appendChild(botaoApagar);
-        
+        adicionarTarefa(tarefaSalva);  
     }
     salvarTarefas();
 }
