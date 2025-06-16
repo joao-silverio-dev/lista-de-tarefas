@@ -20,8 +20,17 @@ function adicionarTarefa(){
 }
 document.addEventListener('click', function(e){
     if(e.target.className === `apagador`){
-        e.target.parentElement.remove();
-        salvarTarefas();
+        let confirmar = confirm("Deseja mesmo apagar?");
+        if(confirmar == true){
+            e.target.parentElement.remove();
+            salvarTarefas();
+        }
+    }
+});
+
+inputTarefas.addEventListener('keypress', (event) => {
+    if(event.key === 'Enter'){
+        adicionarTarefa();
     }
 });
 
