@@ -7,7 +7,7 @@ botaoTarefas.addEventListener('click', function(){
 });
 function adicionarTarefa(){
     if(!inputTarefas.value) return;
-        const tarefa = document.createElement('li');
+        const tarefa = document.createElement('p');
         tarefa.innerText = `${inputTarefas.value} `;
         tarefas.appendChild(tarefa);
         inputTarefas.value = '';
@@ -35,7 +35,7 @@ inputTarefas.addEventListener('keypress', (event) => {
 });
 
 function salvarTarefas(){
-    const liTarefas = tarefas.querySelectorAll('li');
+    const liTarefas = tarefas.querySelectorAll('p');
     let listaDeTarefas = [];
 
     for(let tarefa of liTarefas){
@@ -54,7 +54,7 @@ function getTarefasSalvas(){
 
     for(let tarefaSalva of listaDeTarefas){
         console.log(tarefaSalva)
-        const tarefa = document.createElement('li');
+        const tarefa = document.createElement('p');
         tarefa.innerText = `${tarefaSalva}`;
         tarefas.appendChild(tarefa);
         inputTarefas.value = '';
