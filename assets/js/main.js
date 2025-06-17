@@ -2,6 +2,17 @@ const inputTarefas = document.querySelector('.input-tarefas');
 const botaoTarefas = document.querySelector('.botao-tarefas');
 const tarefas = document.querySelector('.tarefas');
 
+let isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+if(isDarkMode) {
+    window.document.body.style.setProperty('--primary-color', 'rgba(32, 32, 32, 1)');
+    window.document.body.style.setProperty('--secondary-color', 'rgba(74, 74, 74, 1)');
+    window.document.body.style.setProperty('--text-color', 'white')
+} 
+else {
+    window.document.body.style.setProperty('--primary-color', 'rgb(197, 197, 197)');
+    window.document.body.style.setProperty('--shadow', 'rgba(0, 0, 0, 0.4)');
+}
+
 botaoTarefas.addEventListener('click', function(){
     adicionarTarefa(inputTarefas.value);
 });
@@ -65,4 +76,9 @@ function getTarefasSalvas(){
     }
     salvarTarefas();
 }
+
+function verificarTema(){
+    
+}
+verificarTema();
 getTarefasSalvas();
