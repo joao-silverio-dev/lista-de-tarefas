@@ -62,7 +62,7 @@ p {
     background-color: var(--button-color);
     color: white;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.0);
     cursor: pointer;
 }
 .botao-tarefas {
